@@ -61,10 +61,12 @@ module.exports = exports = function parse (schema, existingComponents) {
 	}
 
 	if (schema._examples.length) {
-		if (schema._examples.length === 1) {
-			swagger.example = schema._examples[0];
-		} else {
-			swagger.examples = schema._examples;
+		if (schema._examples.length) {
+      if (schema._examples.length === 1) {
+        swagger.example = schema._examples[0].value;
+      } else {
+        swagger.examples = schema._examples.map(x => x.value);
+      }
 		}
 	}
 
